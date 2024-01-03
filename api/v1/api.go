@@ -30,7 +30,7 @@ func (api *Api) setupWebPages(engine *gin.Engine) {
 	engine.GET("/login", api.loginPage)
 	engine.GET("/register", api.registerPage)
 	engine.GET("/messages/:user_id", api.postMessagePage)
-	engine.GET("/dashboard", api.Authenticate(), api.dashboardPage)
+	engine.GET("/dashboard", api.dashboardPage)
 	engine.GET("/404", api.notFound404)
 }
 

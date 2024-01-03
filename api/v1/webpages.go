@@ -23,7 +23,7 @@ func (api *Api) postMessagePage(ctx *gin.Context) {
 }
 
 func (api *Api) dashboardPage(ctx *gin.Context) {
-
+	ctx.HTML(http.StatusOK, "dashboard.html", nil)
 }
 
 func (api *Api) notFound404(ctx *gin.Context) {

@@ -29,8 +29,8 @@ loginBtn.addEventListener("click", async () => {
 
     if (resData['is_success']){
         await successFlash('login successful');
-        localStorage.setItem('jwt_token',resData['jwt_token'])
-        location.href = "/dashboard"
+        localStorage.setItem('jwt_token',resData['jwt_token']);
+        location.href = "/dashboard";
     }else{
         errorFlash(resData['err'])
     }

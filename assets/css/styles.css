@@ -82,3 +82,21 @@ body {
     color:white;
     padding: 2vh;
 }
+
+.top-bar{
+    width: 80%;
+    margin-left:10%;
+    margin-top:4vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.top-bar button {
+    height: 5vh;
+    background-color: black;
+    color: white;
+    width: 20%;
+    border-radius: 10px;
+    cursor: pointer;
+}
