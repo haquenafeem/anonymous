@@ -21,3 +21,11 @@ func (api *Api) registerPage(ctx *gin.Context) {
 func (api *Api) postMessagePage(ctx *gin.Context) {
 
 }
+
+func (api *Api) dashboardPage(ctx *gin.Context) {
+
+}
+
+func (api *Api) notFound404(ctx *gin.Context) {
+	ctx.HTML(http.StatusOK, "404.html", nil)
+}

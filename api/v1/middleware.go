@@ -12,8 +12,13 @@ func (api *Api) Authenticate() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		authHeader := ctx.GetHeader("Authorization")
 		if authHeader == "" {
-			ctx.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
-			ctx.Abort()
+			if strings.Contains(ctx.Request.URL.Path, "api") {
+				ctx.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+				ctx.Abort()
+			} else {
+				ctx.HTML(http.StatusOK, "404.html", nil)
+			}
+
 			return
 		}
 
@@ -21,8 +26,12 @@ func (api *Api) Authenticate() gin.HandlerFunc {
 		claims, err := internal.ValidateJWT(tokenString)
 
 		if err != nil {
-			ctx.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token"})
-			ctx.Abort()
+			if strings.Contains(ctx.Request.URL.Path, "api") {
+				ctx.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token"})
+				ctx.Abort()
+			} else {
+				ctx.HTML(http.StatusOK, "404.html", nil)
+			}
 			return
 		}
 
