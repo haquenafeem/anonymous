@@ -1,13 +1,13 @@
 import { successFlash,errorFlash } from "./flash.js";
 
-var registerBtn = document.getElementById("register-button");
+var loginBtn = document.getElementById("login-button");
 
 var email = document.getElementById("email");
 var password = document.getElementById("password");
 
 
-registerBtn.addEventListener("click", async () => {
-    const url = '/api/v1/users/register';
+loginBtn.addEventListener("click", async () => {
+    const url = '/api/v1/users/login';
 
     const data = {
         email: email.value,
@@ -28,10 +28,10 @@ registerBtn.addEventListener("click", async () => {
     console.log(resData)
 
     if (resData['is_success']){
-        await successFlash('registration successful');
-        location.href = "/login"
+        await successFlash('login successful');
+        localStorage.setItem('jwt_token',resData['jwt_token'])
+        location.href = "/dashboard"
     }else{
         errorFlash(resData['err'])
     }
 })
-

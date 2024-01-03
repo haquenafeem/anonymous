@@ -72,3 +72,13 @@ body {
     border-radius: 10px;
     cursor: pointer;
 }
+
+#flash-card{
+    position: fixed;
+    width:40%;
+    left:30%;
+    bottom:2vh;
+    background-color: black;
+    color:white;
+    padding: 2vh;
+}
