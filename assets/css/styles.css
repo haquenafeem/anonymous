@@ -35,3 +35,40 @@ body {
     color: white;
     cursor: pointer;
 }
+
+.form-block{
+    width: 20%;
+    margin:35%;
+    margin-top:5%;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form-block h3{
+    margin-bottom:5vh;
+    margin-right:40%;
+}
+
+.form-block input{
+    width: 70%;
+    padding-left: 5%;
+    margin-right:10%;
+    height: 5vh;
+    margin-bottom: 5vh;
+}
+
+.form-block button{
+    margin-right: 10%;
+    height: 5vh;
+    background-color: black;
+    color: white;
+    width: 40%;
+    border-radius: 10px;
+    cursor: pointer;
+}
