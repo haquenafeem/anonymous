@@ -9,7 +9,7 @@ body {
     background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     /* background-size: cover; */
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -93,6 +93,40 @@ body {
 }
 
 .top-bar button {
+    height: 5vh;
+    background-color: black;
+    color: white;
+    width: 20%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.dashboard-block{
+    width:50%;
+    margin-left:25%;
+    margin-top:4vh;
+}
+
+.messages{
+    width: 80%;
+    margin-left:10%;
+    margin-bottom: 4vh;
+}
+
+.message-item{
+    margin-top:4vh;
+    padding: 5%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+
+.messages button {
     height: 5vh;
     background-color: black;
     color: white;

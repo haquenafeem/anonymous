@@ -128,6 +128,6 @@ func (svc *Service) GenerateQrCodeBytes(ctx *gin.Context) ([]byte, error) {
 		return nil, errors.New("unable to cast user claims")
 	}
 
-	messageUrl := "/messages/" + claims.UserID
+	messageUrl := ctx.Request.Host + "/messages/" + claims.UserID
 	return internal.GenerateQRCode(messageUrl)
 }
