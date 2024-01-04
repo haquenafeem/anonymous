@@ -36,3 +36,9 @@ type UploadResponse struct {
 	Err       string `json:"err"`
 	IsSuccess bool   `json:"is_success"`
 }
+
+type ProfilePicResponse struct {
+	Err          string `json:"err"`
+	IsSuccess    bool   `json:"is_success"`
+	ProfilePicID string `json:"profile_pic_id"`
+}

@@ -95,7 +95,7 @@ func (svc *Service) UploadProfilePic(ctx *gin.Context) (int, *model.UploadRespon
 
 	if err != nil {
 		return http.StatusBadRequest, &model.UploadResponse{
-			Err: "no file reciever",
+			Err: "no file recieved",
 		}
 	}
 
@@ -128,6 +128,40 @@ func (svc *Service) UploadProfilePic(ctx *gin.Context) (int, *model.UploadRespon
 	}
 
 	return http.StatusOK, res
+}
+
+func (svc *Service) ProfilePic(ctx *gin.Context) (int, *model.ProfilePicResponse) {
+	claims_any, ok := ctx.Get("claims")
+	if !ok {
+		return http.StatusInternalServerError, &model.ProfilePicResponse{
+			Err: "unable to get user claims",
+		}
+	}
+
+	claims, ok := claims_any.(*internal.CustomClaims)
+	if !ok {
+		return http.StatusInternalServerError, &model.ProfilePicResponse{
+			Err: "unable to cast user claims",
+		}
+	}
+
+	user, err := svc.repo.FindUser(claims.UserID)
+	if err != nil || user.ID == "" {
+		return http.StatusInternalServerError, &model.ProfilePicResponse{
+			Err: "user not found",
+		}
+	}
+
+	if user.Profile_Pic_ID == "" {
+		return http.StatusInternalServerError, &model.ProfilePicResponse{
+			Err: "profile pic not found",
+		}
+	}
+
+	return http.StatusOK, &model.ProfilePicResponse{
+		IsSuccess:    true,
+		ProfilePicID: user.Profile_Pic_ID,
+	}
 }
 
 func (svc *Service) GenerateQrCodeBytes(ctx *gin.Context) ([]byte, error) {

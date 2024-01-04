@@ -17,6 +17,7 @@ func (api *Api) setupUserRoutes(v1 *gin.RouterGroup) {
 	users.POST("/register", api.register)
 	users.POST("/login", api.login)
 	users.POST("/upload", api.Authenticate(), api.upload)
+	users.GET("/profile-pic", api.Authenticate(), api.getProfilePic)
 	users.GET("/generate-qr-code", api.Authenticate(), api.generateQRCode)
 }
 

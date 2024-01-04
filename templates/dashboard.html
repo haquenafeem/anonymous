@@ -17,6 +17,10 @@
             Logout
         </button>
     </div>
+    <div class="profile_pic" onclick="openFileUploader()">
+        <img src="https://www.freepnglogos.com/uploads/camera-logo-png/camera-icons-vector-backgrounds-11.png" alt="" id="profile_img">
+        <input type="file" class="file-input" id="fileInput" onchange="handleFileSelect()">
+    </div>
     <div class="dashboard-block">
         <div class="messages">
             <button id="generate-qr">GENERATE QR</button>

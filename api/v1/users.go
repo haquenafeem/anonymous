@@ -68,3 +68,7 @@ func (api *Api) generateQRCode(ctx *gin.Context) {
 
 	ctx.Data(http.StatusOK, "application/octet-stream", imageBytes)
 }
+
+func (api *Api) getProfilePic(ctx *gin.Context) {
+	ctx.JSON(api.svc.ProfilePic(ctx))
+}
