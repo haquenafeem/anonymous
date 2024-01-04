@@ -2,6 +2,7 @@ package v1
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/haquenafeem/anonymous/service"
@@ -56,13 +57,17 @@ func New(engine *gin.Engine, svc *service.Service) *Api {
 		svc:    svc,
 	}
 
+	api.setupWebPages(api.router)
+	v1 := api.router.Group("/api/v1")
+	api.setupRoutes(v1)
+
 	api.router.Static("/assets", "./assets")
 	api.router.Static("/img", "./images")
 	api.router.LoadHTMLGlob("templates/*")
 
-	api.setupWebPages(api.router)
-	v1 := api.router.Group("/api/v1")
-	api.setupRoutes(v1)
+	api.router.NoRoute(func(ctx *gin.Context) {
+		ctx.HTML(http.StatusOK, "404.html", nil)
+	})
 
 	return api
 }

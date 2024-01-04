@@ -83,6 +83,17 @@ body {
     padding: 2vh;
 }
 
+#flash-card-fail{
+    position: fixed;
+    width:40%;
+    left:30%;
+    bottom:2vh;
+    background-color: rgb(255, 78, 78);
+    color:white;
+    padding: 2vh; 
+    border: 2px solid black;
+}
+
 .top-bar{
     width: 80%;
     margin-left:10%;
@@ -154,4 +165,11 @@ body {
 
 .file-input{
     display: none;
+}
+
+#data-text{
+    margin-bottom: 4vh;
+    width: 80%;
+    margin-left: 5%;
+    padding: 5%;
 }

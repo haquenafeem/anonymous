@@ -18,11 +18,16 @@ export async function successFlash(message) {
 
 export function errorFlash(message) {
     const flash = document.createElement('div');
-    flash.id = "flash-card";
+    flash.id = "flash-card-fail";
 
     const paragraph = document.createElement('p')
     paragraph.textContent = 'Failed : ' + message;
 
     flash.appendChild(paragraph);
     document.body.appendChild(flash);
+
+    setTimeout(function () {
+        flash.style.display = 'none';
+        resolve();
+    }, 3000);
 }

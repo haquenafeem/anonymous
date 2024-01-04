@@ -19,7 +19,7 @@ func (api *Api) registerPage(ctx *gin.Context) {
 }
 
 func (api *Api) postMessagePage(ctx *gin.Context) {
-
+	ctx.HTML(http.StatusOK, "post.html", nil)
 }
 
 func (api *Api) dashboardPage(ctx *gin.Context) {
