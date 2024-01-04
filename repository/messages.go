@@ -12,3 +12,10 @@ func (repository *Repository) GetAll(userID string) ([]model.Message, error) {
 
 	return messages, err
 }
+
+func (repository *Repository) GetMessage(id string) (*model.Message, error) {
+	var message model.Message
+	err := repository.db.Where("id = ?", id).Find(&message).Error
+
+	return &message, err
+}

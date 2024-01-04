@@ -90,8 +90,36 @@ async function getProfilePic(token) {
 
 var messagesDiv = document.getElementsByClassName("messages")[0];
 
-function shareMessage(id) {
-    console.log(id)
+async function shareMessage(id) {
+    token = getToken();
+    const url = '/api/v1/messages/share/'+id;
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+        },
+    };
+
+    const response = await fetch(url, options)
+    if (!response.ok) {
+        throw new Error(`Failed to fetch image (${response.status} ${response.statusText})`);
+    }
+
+    const file = await response.blob()
+    const downloadLink = document.createElement('a');
+
+    const blobUrl = URL.createObjectURL(file);
+
+    downloadLink.href = blobUrl;
+    downloadLink.download = 'message.png'; // Change the filename as needed
+
+    document.body.appendChild(downloadLink);
+
+    downloadLink.click();
+
+    document.body.removeChild(downloadLink);
 }
 
 async function getMessages(token) {

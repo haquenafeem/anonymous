@@ -32,5 +32,19 @@ func (api *Api) getMessages(ctx *gin.Context) {
 }
 
 func (api *Api) shareMessage(ctx *gin.Context) {
+	imageBytes, err := api.svc.ShareMessage(ctx)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"err": "cannot generate image for message",
+		})
 
+		return
+	}
+
+	// Set the appropriate headers for the response
+	ctx.Header("Content-Disposition", "attachment; filename=message.png")
+	ctx.Header("Content-Type", "application/octet-stream")
+	ctx.Header("Content-Transfer-Encoding", "binary")
+
+	ctx.Data(http.StatusOK, "application/octet-stream", imageBytes)
 }

@@ -1,6 +1,7 @@
 package service
 
 import (
+	"errors"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -60,4 +61,28 @@ func (svc *Service) GetAllMessages(ctx *gin.Context) (int, *model.GetAllMessages
 		IsSuccess: true,
 		Messages:  messages,
 	}
+}
+
+func (svc *Service) ShareMessage(ctx *gin.Context) ([]byte, error) {
+	claims_any, ok := ctx.Get("claims")
+	if !ok {
+		return nil, errors.New("unable to get user claims")
+	}
+
+	claims, ok := claims_any.(*internal.CustomClaims)
+	if !ok {
+		return nil, errors.New("unable to cast user claims")
+	}
+
+	msgID := ctx.Param("msg_id")
+	message, err := svc.repo.GetMessage(msgID)
+	if err != nil || message.ID == "" {
+		return nil, errors.New("unable to get message")
+	}
+
+	if message.UserID != claims.UserID {
+		return nil, errors.New("not authorized to read message")
+	}
+
+	return svc.sm.GetImageBytes(message.Data)
 }
