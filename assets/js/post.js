@@ -12,9 +12,6 @@ var postBtn = document.getElementById("post-button");
 
 postBtn.addEventListener("click", async () => {
     const id = getUserIdFromPath();
-    console.log("ssssssssssssssssssssssssss")
-    console.log(id)
-    console.log("ssssssssssssssssssssssssss")
     const url = '/api/v1/messages';
 
     const data = {
