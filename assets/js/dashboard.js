@@ -19,15 +19,15 @@ async function downloadQr() {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization':'Bearer '+ token,
+            'Authorization': 'Bearer ' + token,
         },
     };
 
     const response = await fetch(url, options)
-    if (!response.ok){
+    if (!response.ok) {
         throw new Error(`Failed to fetch image (${response.status} ${response.statusText})`);
     }
-    
+
     const file = await response.blob()
     const downloadLink = document.createElement('a');
 
@@ -47,6 +47,8 @@ function getToken() {
     return localStorage.getItem('jwt_token');
 }
 
+
+
 function initialize() {
     token = getToken()
     if (token == null || token == '') {
@@ -65,8 +67,53 @@ function getProfilePic(token) {
 
 }
 
-function getMessages(token){
+var messagesDiv = document.getElementsByClassName("messages")[0];
 
+function shareMessage(id) {
+    console.log(id)
+}
+
+async function getMessages(token) {
+    token = getToken()
+    const url = '/api/v1/messages';
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+        },
+    };
+
+    const response = await fetch(url, options)
+    if (!response.ok) {
+        throw new Error(`Failed to fetch image (${response.status} ${response.statusText})`);
+    }
+
+    const jsonData = await response.json();
+    console.log(jsonData);
+
+
+    jsonData.messages.forEach(msg => {
+        console.log(msg)
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message-item');
+
+        const para = document.createElement('p');
+        para.textContent = msg.data;
+
+        const shareBtn = document.createElement('button');
+        shareBtn.textContent = 'Share';
+        shareBtn.onclick = function () {
+            shareMessage(msg.id);
+        };
+
+
+        messageDiv.appendChild(para);
+        messageDiv.appendChild(shareBtn);
+
+        messagesDiv.appendChild(messageDiv);
+    });
 }
 
 initialize();

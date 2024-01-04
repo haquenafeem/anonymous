@@ -18,6 +18,19 @@ func (svc *Service) RegisterUser(req *model.RegisterRequest) *model.RegisterResp
 		}
 	}
 
+	existingUser, err := svc.repo.FindByEmail(req.Email)
+	if err != nil {
+		return &model.RegisterResponse{
+			Err: "user creation failed",
+		}
+	}
+
+	if existingUser.ID != "" {
+		return &model.RegisterResponse{
+			Err: "user already registered with email",
+		}
+	}
+
 	hashedPassword, err := internal.HashPassword(req.Password)
 	if err != nil {
 		return &model.RegisterResponse{

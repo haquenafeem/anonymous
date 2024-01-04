@@ -30,3 +30,7 @@ func (api *Api) postMessage(ctx *gin.Context) {
 func (api *Api) getMessages(ctx *gin.Context) {
 	ctx.JSON(api.svc.GetAllMessages(ctx))
 }
+
+func (api *Api) shareMessage(ctx *gin.Context) {
+
+}

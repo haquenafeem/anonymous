@@ -1,9 +1,9 @@
 package model
 
 type Message struct {
-	ID     string `gorm:"primaryKey"`
-	Data   string
-	UserID string
+	ID     string `gorm:"primaryKey" json:"id"`
+	Data   string `json:"data"`
+	UserID string `json:"user_id"`
 }
 
 func (Message) TableName() string {
@@ -21,7 +21,7 @@ type PostMessageResponse struct {
 }
 
 type GetAllMessagesResponse struct {
-	Messages  []Message
-	IsSuccess bool   `json:"is_success"`
-	Err       string `json:"err"`
+	Messages  []Message `json:"messages"`
+	IsSuccess bool      `json:"is_success"`
+	Err       string    `json:"err"`
 }

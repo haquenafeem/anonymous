@@ -24,6 +24,7 @@ func (api *Api) setupMessageRoutes(v1 *gin.RouterGroup) {
 	messages := v1.Group("/messages")
 	messages.POST("/", api.postMessage)
 	messages.GET("/", api.Authenticate(), api.getMessages)
+	messages.GET("/share/:msg_id", api.Authenticate(), api.shareMessage)
 }
 
 func (api *Api) setupWebPages(engine *gin.Engine) {
