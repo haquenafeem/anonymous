@@ -11,7 +11,7 @@ func (Message) TableName() string {
 }
 
 type PostMessageRequest struct {
-	UserID  string
+	UserID  string `json:"user_id"`
 	Message string
 }
 

@@ -10,7 +10,7 @@ import (
 
 func (svc *Service) PostMessage(req *model.PostMessageRequest) *model.PostMessageResponse {
 	user, err := svc.repo.FindUser(req.UserID)
-	if err != nil {
+	if err != nil || user.ID == "" {
 		return &model.PostMessageResponse{
 			Err: "user not found",
 		}
