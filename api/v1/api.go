@@ -23,6 +23,7 @@ func (api *Api) setupUserRoutes(v1 *gin.RouterGroup) {
 func (api *Api) setupMessageRoutes(v1 *gin.RouterGroup) {
 	messages := v1.Group("/messages")
 	messages.POST("/:user_id", api.postMessage)
+	messages.GET("/", api.Authenticate(), api.getMessages)
 }
 
 func (api *Api) setupWebPages(engine *gin.Engine) {

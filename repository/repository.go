@@ -20,7 +20,7 @@ func NewMust(db *gorm.DB) *Repository {
 }
 
 func (repo *Repository) migrateAllMust() {
-	err := repo.db.AutoMigrate(&model.User{})
+	err := repo.db.AutoMigrate(&model.User{}, &model.Message{})
 	if err != nil {
 		panic(err)
 	}

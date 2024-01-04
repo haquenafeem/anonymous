@@ -15,6 +15,13 @@ func (repository *Repository) FindByEmail(email string) (*model.User, error) {
 	return &user, err
 }
 
+func (repository *Repository) FindUser(id string) (*model.User, error) {
+	var user model.User
+	err := repository.db.Where("id = ?", id).Find(&user).Error
+
+	return &user, err
+}
+
 func (repository *Repository) UpdateProfilePicId(userId, picId string) *model.UploadResponse {
 	query := `
 	UPDATE
