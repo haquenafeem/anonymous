@@ -9,6 +9,7 @@ function getUserIdFromPath() {
 }
 
 var postBtn = document.getElementById("post-button");
+var txtData = document.getElementById("data-text")
 
 postBtn.addEventListener("click", async () => {
     const id = getUserIdFromPath();
@@ -16,7 +17,7 @@ postBtn.addEventListener("click", async () => {
 
     const data = {
         user_id: id,
-        message: 'asdasda',
+        message: txtData.value,
     };
 
     const options = {
