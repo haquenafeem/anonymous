@@ -3,10 +3,10 @@
 Lets you send and recieve anonymous message; kind of like [NGLLINK](https://ngl.link/)
 
 ## Features
-- Send and receive anonymous messages
-- User-friendly interface
-- Generate qrCode 
-- Share message as image
+- Send and receive anonymous messages.
+- User-friendly interface.
+- Generate qrCode and share.
+- Share message as image.
 
 ## How to run
 - Clone `https://github.com/haquenafeem/anonymous.git`
